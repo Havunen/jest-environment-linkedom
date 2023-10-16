@@ -1,6 +1,6 @@
 {
   "name": "jest-environment-linkedom",
-  "version": "29.0.0",
+  "version": "29.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/jestjs/jest.git",
@@ -10,6 +10,9 @@
     "build": "tsc --build",
     "test": "jest ."
   },
+  "files": [
+    "build/**"
+  ],
   "license": "MIT",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
