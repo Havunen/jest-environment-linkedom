@@ -9,6 +9,9 @@ export function storageMock() {
         getItem: function(key) {
             return storage.has(key) ? storage.get(key) : null;
         },
+        clear: function() {
+            storage.clear();
+        },
         removeItem: function(key) {
             storage.delete(key);
         },
