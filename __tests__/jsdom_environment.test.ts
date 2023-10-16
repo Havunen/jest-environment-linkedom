@@ -21,6 +21,19 @@ describe('JSDomEnvironment', () => {
     }
   });
 
+  it('has localStorage mock', () => {
+    const env = new Environment(
+        {
+          globalConfig: makeGlobalConfig(),
+          projectConfig: makeProjectConfig(),
+        },
+        {console, docblockPragmas: {}, testPath: __filename},
+    );
+
+    expect(env.global.localStorage).toBeDefined();
+    expect(env.dom!.window.localStorage).toBeDefined();
+  })
+
   it('has modern fake timers implementation', () => {
     const env = new Environment(
       {

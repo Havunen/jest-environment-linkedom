@@ -2,6 +2,7 @@ import {parseHTML} from 'linkedom'
 import {LegacyFakeTimers, ModernFakeTimers} from '@jest/fake-timers';
 import {ModuleMocker} from 'jest-mock';
 import {Context, createContext, runInContext} from 'vm';
+import {storageMock} from './mocks/storageMock'
 
 const denyList = new Set([
   'GLOBAL',
@@ -43,6 +44,9 @@ function mapGlobalsFromLinkedom(global: Record<string, any>, dom: Record<string,
   global.document = dom.document;
   global.window = dom.window;
   global.navigator = dom.window.navigator
+
+  global.localStorage = dom.window.localStorage
+  global.sessionStorage = dom.window.sessionStorage
 
   global.Attr = dom.Attr
   global.CharacterData = dom.CharacterData
@@ -153,6 +157,10 @@ export default class LinkedomEnvironment {
     // @ts-ignore
     const dom = parseHTML(html, global);
 
+    // @ts-ignore
+    (dom.window as any).localStorage = storageMock();
+    // @ts-ignore
+    (dom.window as any).sessionStorage = storageMock()
     mapGlobalsFromLinkedom(global, dom);
 
     if (global == null) {
