@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "src",
     "skipLibCheck": true,
     "target": "ES2022",
     "newLine": "lf",
@@ -20,8 +21,10 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "removeComments": false,
-    "experimentalDecorators": false,
-    "rootDir": "."
+    "experimentalDecorators": false
   },
+  "include": [
+    "src/"
+  ],
   "exclude": ["node_modules"]
 }
