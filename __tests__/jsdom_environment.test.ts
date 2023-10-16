@@ -1,5 +1,5 @@
 import {makeGlobalConfig, makeProjectConfig} from './test_utils';
-import Environment from '../';
+import Environment from '../src';
 
 describe('JSDomEnvironment', () => {
   it('should configure setTimeout/setInterval to use the browser api', () => {
