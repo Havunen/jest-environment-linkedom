@@ -160,7 +160,11 @@ export default class LinkedomEnvironment {
     // @ts-ignore
     (dom.window as any).localStorage = storageMock();
     // @ts-ignore
-    (dom.window as any).sessionStorage = storageMock()
+    (dom.window as any).sessionStorage = storageMock();
+
+    (dom.window as any).URL = {
+      revokeObjectURL: function revokeObjectURL() {}
+    };
     mapGlobalsFromLinkedom(global, dom);
 
     if (global == null) {
