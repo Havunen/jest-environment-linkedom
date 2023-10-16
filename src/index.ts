@@ -45,6 +45,9 @@ function mapGlobalsFromLinkedom(global: Record<string, any>, dom: Record<string,
   global.window = dom.window;
   global.navigator = dom.window.navigator
 
+  global.Event = dom.Event;
+  global.CustomEvent = dom.CustomEvent;
+
   global.localStorage = dom.window.localStorage
   global.sessionStorage = dom.window.sessionStorage
 
