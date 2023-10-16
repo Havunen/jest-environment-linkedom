@@ -33,6 +33,18 @@ describe('JSDomEnvironment', () => {
     expect(env.fakeTimersModern).toBeDefined();
   });
 
+  it('has navigator userAgent defined', () => {
+    const env = new Environment(
+      {
+        globalConfig: makeGlobalConfig(),
+        projectConfig: makeProjectConfig(),
+      },
+      {console, docblockPragmas: {}, testPath: __filename},
+    );
+
+    expect(env.dom!.window.navigator.userAgent).toContain('Mozilla');
+  });
+
   // TODO: User agent not configurable in linkedom
   // it('should respect userAgent option', () => {
   //   const env = new Environment(

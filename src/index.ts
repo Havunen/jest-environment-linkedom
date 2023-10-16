@@ -42,6 +42,7 @@ function isString(value) {
 function mapGlobalsFromLinkedom(global: Record<string, any>, dom: Record<string, any>) {
   global.document = dom.document;
   global.window = dom.window;
+  global.navigator = dom.window.navigator
 
   global.Attr = dom.Attr
   global.CharacterData = dom.CharacterData
@@ -124,7 +125,7 @@ function mapGlobalsFromLinkedom(global: Record<string, any>, dom: Record<string,
   global.HTMLMarqueeElement = dom.HTMLMarqueeElement
 }
 
-export default class JSDOMEnvironment {
+export default class LinkedomEnvironment {
   public context: Context | null;
   public dom: (Window & typeof globalThis) | null;
   public errorEventListener: ((event) => void) | null;
@@ -314,4 +315,4 @@ export default class JSDOMEnvironment {
   }
 }
 
-export const TestEnvironment = JSDOMEnvironment;
+export const TestEnvironment = LinkedomEnvironment;
