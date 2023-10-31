@@ -1,6 +1,6 @@
 {
   "name": "jest-environment-linkedom",
-  "version": "29.0.8",
+  "version": "29.0.9",
   "repository": {
     "type": "git",
     "url": "https://github.com/jestjs/jest.git",

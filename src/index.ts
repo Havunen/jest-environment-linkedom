@@ -4,6 +4,7 @@ import {ModuleMocker} from 'jest-mock';
 import {Context, createContext, runInContext} from 'vm';
 import {storageMock} from './mocks/storageMock'
 import {URL} from 'node:url'
+import {HistoryMock} from "./mocks/historyMock";
 
 const denyList = new Set([
   'GLOBAL',
@@ -168,6 +169,11 @@ export default class LinkedomEnvironment {
 
     (dom.window as any).URL = URL;
     global.URL = URL;
+
+    const history = new HistoryMock();
+
+    (dom.window as any).history = history;
+    global.history = history
 
     // hide the Request class
     global.Request = undefined;
