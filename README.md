@@ -2,6 +2,10 @@
 
 `jest-environment-linkedom` is jest test environment based on `linkedom`.
 
+## Goal
+
+The goal of this plugin is to provide as fast browser like runtime for jest as possible. Unlike `jsdom` this plugin does not try to provide standards compliant HTML implementation. Instead this plugin focuses on low memory footprint, fast runtime execution and comprehensive mocked HTML APIs where testing can take place by mocking the required methods.
+
 ## Getting started
 
 ```
