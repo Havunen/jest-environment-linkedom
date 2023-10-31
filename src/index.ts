@@ -3,6 +3,7 @@ import {LegacyFakeTimers, ModernFakeTimers} from '@jest/fake-timers';
 import {ModuleMocker} from 'jest-mock';
 import {Context, createContext, runInContext} from 'vm';
 import {storageMock} from './mocks/storageMock'
+import {URL} from 'node:url'
 
 const denyList = new Set([
   'GLOBAL',
@@ -165,14 +166,13 @@ export default class LinkedomEnvironment {
     // @ts-ignore
     (dom.window as any).sessionStorage = storageMock();
 
-    (dom.window as any).URL = {
-      revokeObjectURL: function revokeObjectURL() {}
-    };
-    mapGlobalsFromLinkedom(global, dom);
+    (dom.window as any).URL = URL;
+    global.URL = URL;
 
-    if (global == null) {
-      throw new Error('JSDOM did not return a Window object');
-    }
+    // hide the Request class
+    global.Request = undefined;
+
+    mapGlobalsFromLinkedom(global, dom);
 
     const contextGlobals = new Set(
         Object.getOwnPropertyNames(global),
