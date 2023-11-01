@@ -5,6 +5,7 @@ import {Context, createContext, runInContext} from 'vm';
 import {storageMock} from './mocks/storageMock'
 import {URL} from 'node:url'
 import {HistoryMock} from "./mocks/historyMock";
+import {LocationMock} from "./mocks/locationMock";
 
 const denyList = new Set([
   'GLOBAL',
@@ -166,6 +167,7 @@ export default class LinkedomEnvironment {
     (dom.window as any).localStorage = storageMock();
     // @ts-ignore
     (dom.window as any).sessionStorage = storageMock();
+    (dom.window as any).location = new LocationMock('http://localhost');
 
     (dom.window as any).URL = URL;
     global.URL = URL;
